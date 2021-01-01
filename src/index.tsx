@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./contexts/auth";
-import CityWeather from "./screens/city";
 import { ApiProvider } from "./contexts/api";
+import AppShell from "./components/app-shell";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <ApiProvider>
-        <CityWeather />
+        <AppShell />
       </ApiProvider>
     </AuthProvider>
   </React.StrictMode>,
