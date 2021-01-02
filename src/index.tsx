@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./contexts/auth";
 import { ApiProvider } from "./contexts/api";
 import AppShell from "./components/app-shell";
-<<<<<<< HEAD
-=======
-import { useMediaQuery, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import {
+  useMediaQuery,
+  createMuiTheme,
+  MuiThemeProvider,
+} from "@material-ui/core";
 import { WeatherProvider } from "./contexts/weather";
+import { BrowserRouter } from "react-router-dom";
 
 const ThemedApp = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -20,7 +23,7 @@ const ThemedApp = () => {
             main: "#0190D0",
           },
           secondary: {
-            main: "#FFB719"
+            main: "#FFB719",
           },
           type: prefersDarkMode ? "dark" : "light",
         },
@@ -31,21 +34,18 @@ const ThemedApp = () => {
     <MuiThemeProvider theme={theme}>
       <AppShell />
     </MuiThemeProvider>
-  )
+  );
 };
->>>>>>> 6968c90... add: weather context
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <ApiProvider>
-<<<<<<< HEAD
-        <AppShell />
-=======
         <WeatherProvider>
-          <ThemedApp />
+          <BrowserRouter>
+            <ThemedApp />
+          </BrowserRouter>
         </WeatherProvider>
->>>>>>> 6968c90... add: weather context
       </ApiProvider>
     </AuthProvider>
   </React.StrictMode>,
