@@ -5,12 +5,47 @@ import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./contexts/auth";
 import { ApiProvider } from "./contexts/api";
 import AppShell from "./components/app-shell";
+<<<<<<< HEAD
+=======
+import { useMediaQuery, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { WeatherProvider } from "./contexts/weather";
+
+const ThemedApp = () => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const theme = useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          primary: {
+            main: "#0190D0",
+          },
+          secondary: {
+            main: "#FFB719"
+          },
+          type: prefersDarkMode ? "dark" : "light",
+        },
+      }),
+    [prefersDarkMode]
+  );
+  return (
+    <MuiThemeProvider theme={theme}>
+      <AppShell />
+    </MuiThemeProvider>
+  )
+};
+>>>>>>> 6968c90... add: weather context
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <ApiProvider>
+<<<<<<< HEAD
         <AppShell />
+=======
+        <WeatherProvider>
+          <ThemedApp />
+        </WeatherProvider>
+>>>>>>> 6968c90... add: weather context
       </ApiProvider>
     </AuthProvider>
   </React.StrictMode>,

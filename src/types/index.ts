@@ -5,7 +5,7 @@ interface WindReport {
   speed_range?: number[]
 }
 
-interface Location {
+export interface Location {
   id: number;
   name: string;
   department: string;
