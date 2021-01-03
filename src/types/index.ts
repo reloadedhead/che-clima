@@ -5,6 +5,11 @@ interface WindReport {
   speed_range?: number[]
 }
 
+/**
+ * ¿Por qué devolverían semejante guarangada?
+ */
+export type LocationSearchItem = (string | number)[];
+
 export interface Location {
   id: number;
   name: string;

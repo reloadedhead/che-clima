@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const CityWeather = () => {
-  const { getAllWeatherData } = useWeather();
+  const { getAllWeatherData, location } = useWeather();
   const styles = useStyles();
   useEffect(() => {
     (async () => await getAllWeatherData())();
   // eslint-disable-next-line
-  }, []);
+  }, [location]);
 
   return (
     <Grid container spacing={2}>

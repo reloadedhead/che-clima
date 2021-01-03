@@ -10,6 +10,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
+import SearchPopover from "./search";
+import { LocationSearchItem } from "../../../types";
+import { useApi } from "../../../contexts/api";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -74,20 +77,34 @@ const Header = () => {
     HTMLTextAreaElement | HTMLInputElement | null
   >(null);
   const [filterTerm, setFilterTerm] = useState("");
+  const [options, setOptions] = useState<LocationSearchItem[]>([]);
+  const { fetchLocations } = useApi();
+
+  const getLocations = async (name: string) => {
+    try {
+      setOptions((await fetchLocations(name)).data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSearchInput = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     if (event.currentTarget.value === "") {
-      handleCloseFilteredPopover();
+      handleCloseSearchPopover();
+    } else if (event.currentTarget.value.length > 2) {
+      getLocations(event.currentTarget.value);
     } else {
       setSearchAnchorEl(event.currentTarget);
     }
     setFilterTerm(event.currentTarget.value);
   };
 
-  const handleCloseFilteredPopover = () => {
+  const handleCloseSearchPopover = () => {
     setSearchAnchorEl(null);
+    setOptions([]);
+    setFilterTerm("");
   };
 
   return (
@@ -103,6 +120,7 @@ const Header = () => {
             </div>
             <InputBase
               placeholder="Buscar..."
+              value={filterTerm}
               onChange={handleSearchInput}
               classes={{
                 root: classes.inputRoot,
@@ -113,6 +131,11 @@ const Header = () => {
           </div>
         </Toolbar>
       </AppBar>
+      <SearchPopover
+        anchorEl={searchAnchorEl}
+        options={options}
+        handleClose={handleCloseSearchPopover}
+      />
     </div>
   );
 };

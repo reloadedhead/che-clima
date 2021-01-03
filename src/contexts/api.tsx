@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import axios, { AxiosPromise } from "axios";
-import { ForecastReport, SunReport, WeatherReport } from "../types";
+import { ForecastReport, LocationSearchItem, SunReport, WeatherReport } from "../types";
 import { useAuth } from "./auth";
 
 interface ApiContext {
@@ -8,6 +8,7 @@ interface ApiContext {
   fetchShortTermWarningForCity: (cityCode: number) => AxiosPromise<any>;
   fetchSunInformationForCity: (cityCode: number) => AxiosPromise<SunReport>;
   fetchForecastForCity: (cityCode: number) => AxiosPromise<ForecastReport>;
+  fetchLocations: (name: string) => AxiosPromise<LocationSearchItem[]>;
 }
 
 const initialState: ApiContext = {
@@ -15,6 +16,7 @@ const initialState: ApiContext = {
   fetchForecastForCity: (_cityCode: number) => new Promise(() => {}),
   fetchShortTermWarningForCity: (_cityCode: number) => new Promise(() => {}),
   fetchSunInformationForCity: (_cityCode: number) => new Promise(() => {}),
+  fetchLocations: (_name: string) => new Promise(() => {}),
 };
 
 const ApiContext = createContext(initialState);
@@ -43,6 +45,9 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
   const fetchSunInformationForCity = (cityCode: number) =>
     smnApi.get(`sun/location/${cityCode}`);
 
+  const fetchLocations = (name: string) =>
+    smnApi.get("georef/location/search", { params: { name } });
+
   return (
     <ApiContext.Provider
       value={{
@@ -50,6 +55,7 @@ export const ApiProvider = ({ children }: { children: ReactNode }) => {
         fetchForecastForCity,
         fetchShortTermWarningForCity,
         fetchSunInformationForCity,
+        fetchLocations,
       }}
     >
       {children}
