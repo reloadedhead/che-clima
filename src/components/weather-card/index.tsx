@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,12 +9,10 @@ import {
   CardActions,
   CircularProgress,
   Collapse,
-  Tooltip,
   Typography,
 } from "@material-ui/core";
 import { useWeather } from "../../contexts/weather";
 import WeatherDetails from "../weather-details";
-import { WiDaySunny } from "weather-icons-react";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import WeatherIcon from "../weather-icon";
@@ -75,9 +73,7 @@ export const WeatherCard = () => {
     <Card className={styles.card}>
       <CardContent className={styles.currentWeather}>
         {showIcon ? (
-          <Tooltip title={currentWeather?.weather.description || ""}>
-            <WeatherIcon id={currentWeather?.weather.id || 0} size={120} />
-          </Tooltip>
+          <WeatherIcon id={currentWeather?.weather.id || 0} size={120} />
         ) : (
           <CircularProgress className={styles.progress} size={60} />
         )}
@@ -86,9 +82,9 @@ export const WeatherCard = () => {
             ""}
         </Typography>
       </CardContent>
-      <Typography
-        className={styles.locationSubheader}
-      >{`en ${location.name}`}</Typography>
+      <Typography className={styles.locationSubheader}>{`${
+        currentWeather?.weather.description || ""
+      } en ${location.name}`}</Typography>
       <Divider variant="middle" />
       <Box display={"flex"}>
         <Box p={2} flex={"auto"}>
