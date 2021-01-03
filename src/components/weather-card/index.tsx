@@ -4,9 +4,19 @@ import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
-import { CircularProgress, Tooltip, Typography } from "@material-ui/core";
+import {
+  Button,
+  CardActions,
+  CircularProgress,
+  Collapse,
+  Tooltip,
+  Typography,
+} from "@material-ui/core";
 import { useWeather } from "../../contexts/weather";
+import WeatherDetails from "../weather-details";
 import { WiDaySunny } from "weather-icons-react";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(({ palette }) => ({
   card: {
@@ -79,7 +89,7 @@ export const WeatherCard = () => {
       <Typography
         className={styles.locationSubheader}
       >{`en ${location.name}`}</Typography>
-      <Divider light />
+      <Divider variant="middle" />
       <Box display={"flex"}>
         <Box p={2} flex={"auto"}>
           <p className={styles.statLabel}>Viento</p>
@@ -96,6 +106,19 @@ export const WeatherCard = () => {
           </p>
         </Box>
       </Box>
+      <Collapse in={showDetails} mountOnEnter unmountOnExit>
+        <Divider variant="middle" />
+        <WeatherDetails />
+      </Collapse>
+      <CardActions>
+        <Button
+          endIcon={showDetails ? <ExpandLess /> : <ExpandMore />}
+          color="primary"
+          onClick={() => setShowDetails((show) => !show)}
+        >
+          {showDetails ? "Ver menos" : "Ver más"}
+        </Button>
+      </CardActions>
     </Card>
   );
 };
