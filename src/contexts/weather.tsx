@@ -12,6 +12,7 @@ interface WeatherContext {
   getCurrentWeather: () => Promise<void>;
   getForecast: () => Promise<void>;
   getSunReport: () => Promise<void>;
+  getAllWeatherData: () => Promise<void>;
 }
 
 const initialState: WeatherContext = {
@@ -29,6 +30,7 @@ const initialState: WeatherContext = {
   getCurrentWeather: () => new Promise(() => {}),
   getForecast: () => new Promise(() => {}),
   getSunReport: () => new Promise(() => {}),
+  getAllWeatherData: () => new Promise(() => {}),
 };
 
 const WeatherContext = createContext(initialState);
@@ -79,6 +81,24 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const getAllWeatherData = async () => {
+    try {
+      setLoading(true);
+      const responses = await Promise.all([
+        fetchWeatherForCity(location.id),
+        fetchForecastForCity(location.id),
+        fetchSunInformationForCity(location.id),
+      ]);
+      setCurrentWeather(responses[0].data);
+      setForecastReport(responses[1].data);
+      setSunReport(responses[2].data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <WeatherContext.Provider
       value={{
@@ -90,6 +110,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
         getCurrentWeather,
         getForecast,
         getSunReport,
+        getAllWeatherData,
         loading,
       }}
     >

@@ -15,10 +15,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const CityWeather = () => {
-  const { getCurrentWeather } = useWeather();
+  const { getAllWeatherData } = useWeather();
   const styles = useStyles();
   useEffect(() => {
-    (async () => await getCurrentWeather())();
+    (async () => await getAllWeatherData())();
+  // eslint-disable-next-line
   }, []);
 
   return (
