@@ -17,6 +17,7 @@ import WeatherDetails from "../weather-details";
 import { WiDaySunny } from "weather-icons-react";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import WeatherIcon from "../weather-icon";
 
 const useStyles = makeStyles(({ palette }) => ({
   card: {
@@ -70,13 +71,12 @@ export const WeatherCard = () => {
   const { currentWeather, location, loading } = useWeather();
   const showIcon = Boolean(currentWeather && !loading);
   const [showDetails, setShowDetails] = useState(false);
-  const theme = useTheme();
   return (
     <Card className={styles.card}>
       <CardContent className={styles.currentWeather}>
         {showIcon ? (
-          <Tooltip title={currentWeather?.sky || ""}>
-            <WiDaySunny size={120} color={theme.palette.secondary.main} />
+          <Tooltip title={currentWeather?.weather.description || ""}>
+            <WeatherIcon id={currentWeather?.weather.id || 0} size={120} />
           </Tooltip>
         ) : (
           <CircularProgress className={styles.progress} size={60} />

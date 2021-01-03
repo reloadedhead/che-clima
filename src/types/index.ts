@@ -25,7 +25,10 @@ export interface WeatherReport {
   feels_like: number | null;
   temperature: number;
   visibility: number;
-  sky: string;
+  weather: {
+    description: string;
+    id: number;
+  };
   wind: WindReport;
   station_id: number;
   location: Location;
