@@ -63,7 +63,7 @@ interface RangedForecast {
   border: string | null;
 }
 
-interface Forecast {
+export interface Forecast {
   date: string;
   temp_min: number;
   temp_max: number;

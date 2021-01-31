@@ -1,5 +1,6 @@
 import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
 import React, { useEffect } from "react";
+import ForecastCard from "../../components/forecast-card";
 import WeatherCard from "../../components/weather-card";
 import { useWeather } from "../../contexts/weather";
 
@@ -26,6 +27,9 @@ const CityWeather = () => {
     <Grid container spacing={2}>
       <Grid item xs={12} className={styles.card}>
         <WeatherCard />
+      </Grid>
+      <Grid item xs={12} className={styles.card}>
+        <ForecastCard />
       </Grid>
     </Grid>
   );
