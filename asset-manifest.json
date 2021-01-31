@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.js": "/che-clima/static/js/main.e065775c.chunk.js",
+    "main.js.map": "/che-clima/static/js/main.e065775c.chunk.js.map",
+    "runtime-main.js": "/che-clima/static/js/runtime-main.9e39855a.js",
+    "runtime-main.js.map": "/che-clima/static/js/runtime-main.9e39855a.js.map",
+    "static/js/2.17b0eb7c.chunk.js": "/che-clima/static/js/2.17b0eb7c.chunk.js",
+    "static/js/2.17b0eb7c.chunk.js.map": "/che-clima/static/js/2.17b0eb7c.chunk.js.map",
+    "static/js/3.c9ba7ebe.chunk.js": "/che-clima/static/js/3.c9ba7ebe.chunk.js",
+    "static/js/3.c9ba7ebe.chunk.js.map": "/che-clima/static/js/3.c9ba7ebe.chunk.js.map",
+    "static/js/4.28c76bcb.chunk.js": "/che-clima/static/js/4.28c76bcb.chunk.js",
+    "static/js/4.28c76bcb.chunk.js.map": "/che-clima/static/js/4.28c76bcb.chunk.js.map",
+    "static/js/5.12683a8b.chunk.js": "/che-clima/static/js/5.12683a8b.chunk.js",
+    "static/js/5.12683a8b.chunk.js.map": "/che-clima/static/js/5.12683a8b.chunk.js.map",
+    "index.html": "/che-clima/index.html",
+    "service-worker.js": "/che-clima/service-worker.js",
+    "service-worker.js.map": "/che-clima/service-worker.js.map",
+    "static/js/2.17b0eb7c.chunk.js.LICENSE.txt": "/che-clima/static/js/2.17b0eb7c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e39855a.js",
+    "static/js/2.17b0eb7c.chunk.js",
+    "static/js/main.e065775c.chunk.js"
+  ]
+}
