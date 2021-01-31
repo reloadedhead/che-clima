@@ -1,5 +1,6 @@
 {
-  "name": "che-weather",
+  "name": "che-clima",
+  "homepage": "http://reloadedhead.github.io/che-clima",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -63,6 +65,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "gh-pages": "^3.1.0"
   }
 }
